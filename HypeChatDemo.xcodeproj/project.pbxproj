@@ -1,0 +1,362 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7A1072FE1CF782C700166F76 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1072FD1CF782C700166F76 /* ChatViewController.m */; };
+		7A1073011CF78A8100166F76 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1073001CF78A8100166F76 /* MessageTableViewCell.m */; };
+		7AF19B1A1CF663E500AD1341 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF19B191CF663E500AD1341 /* main.m */; };
+		7AF19B1D1CF663E500AD1341 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF19B1C1CF663E500AD1341 /* AppDelegate.m */; };
+		7AF19B201CF663E500AD1341 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF19B1F1CF663E500AD1341 /* ContactViewController.m */; };
+		7AF19B231CF663E500AD1341 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AF19B211CF663E500AD1341 /* Main.storyboard */; };
+		7AF19B251CF663E500AD1341 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AF19B241CF663E500AD1341 /* Assets.xcassets */; };
+		7AF19B281CF663E500AD1341 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AF19B261CF663E500AD1341 /* LaunchScreen.storyboard */; };
+		7AF19B311CF667E300AD1341 /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF19B301CF667E300AD1341 /* ContactTableViewCell.m */; };
+		7AF19B451CF73CE700AD1341 /* Hype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF19B441CF73CE700AD1341 /* Hype.framework */; };
+		7AF19B461CF73CE700AD1341 /* Hype.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF19B441CF73CE700AD1341 /* Hype.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7AF19B491CF773B400AD1341 /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF19B481CF773B400AD1341 /* Store.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7AF19B431CF73AC100AD1341 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7AF19B461CF73CE700AD1341 /* Hype.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		7A1072FC1CF782C700166F76 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		7A1072FD1CF782C700166F76 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		7A1072FF1CF78A8100166F76 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
+		7A1073001CF78A8100166F76 /* MessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewCell.m; sourceTree = "<group>"; };
+		7A2E45181CF7A1B80017F813 /* StoreDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreDelegate.h; sourceTree = "<group>"; };
+		7AF19B151CF663E500AD1341 /* HypeChatDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HypeChatDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AF19B191CF663E500AD1341 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7AF19B1B1CF663E500AD1341 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7AF19B1C1CF663E500AD1341 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7AF19B1E1CF663E500AD1341 /* ContactViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
+		7AF19B1F1CF663E500AD1341 /* ContactViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
+		7AF19B221CF663E500AD1341 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7AF19B241CF663E500AD1341 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7AF19B271CF663E500AD1341 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7AF19B291CF663E500AD1341 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7AF19B2F1CF667E300AD1341 /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
+		7AF19B301CF667E300AD1341 /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
+		7AF19B441CF73CE700AD1341 /* Hype.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hype.framework; sourceTree = "<group>"; };
+		7AF19B471CF773B400AD1341 /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
+		7AF19B481CF773B400AD1341 /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7AF19B121CF663E500AD1341 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AF19B451CF73CE700AD1341 /* Hype.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7AF19B0C1CF663E500AD1341 = {
+			isa = PBXGroup;
+			children = (
+				7AF19B441CF73CE700AD1341 /* Hype.framework */,
+				7AF19B171CF663E500AD1341 /* HypeChatDemo */,
+				7AF19B161CF663E500AD1341 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7AF19B161CF663E500AD1341 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7AF19B151CF663E500AD1341 /* HypeChatDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7AF19B171CF663E500AD1341 /* HypeChatDemo */ = {
+			isa = PBXGroup;
+			children = (
+				7AF19B1B1CF663E500AD1341 /* AppDelegate.h */,
+				7AF19B1C1CF663E500AD1341 /* AppDelegate.m */,
+				7AF19B1E1CF663E500AD1341 /* ContactViewController.h */,
+				7AF19B1F1CF663E500AD1341 /* ContactViewController.m */,
+				7A1072FC1CF782C700166F76 /* ChatViewController.h */,
+				7A1072FD1CF782C700166F76 /* ChatViewController.m */,
+				7AF19B2F1CF667E300AD1341 /* ContactTableViewCell.h */,
+				7AF19B301CF667E300AD1341 /* ContactTableViewCell.m */,
+				7A1072FF1CF78A8100166F76 /* MessageTableViewCell.h */,
+				7A1073001CF78A8100166F76 /* MessageTableViewCell.m */,
+				7AF19B471CF773B400AD1341 /* Store.h */,
+				7AF19B481CF773B400AD1341 /* Store.m */,
+				7A2E45181CF7A1B80017F813 /* StoreDelegate.h */,
+				7AF19B211CF663E500AD1341 /* Main.storyboard */,
+				7AF19B241CF663E500AD1341 /* Assets.xcassets */,
+				7AF19B261CF663E500AD1341 /* LaunchScreen.storyboard */,
+				7AF19B291CF663E500AD1341 /* Info.plist */,
+				7AF19B181CF663E500AD1341 /* Supporting Files */,
+			);
+			path = HypeChatDemo;
+			sourceTree = "<group>";
+		};
+		7AF19B181CF663E500AD1341 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7AF19B191CF663E500AD1341 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7AF19B141CF663E500AD1341 /* HypeChatDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7AF19B2C1CF663E500AD1341 /* Build configuration list for PBXNativeTarget "HypeChatDemo" */;
+			buildPhases = (
+				7AF19B111CF663E500AD1341 /* Sources */,
+				7AF19B121CF663E500AD1341 /* Frameworks */,
+				7AF19B131CF663E500AD1341 /* Resources */,
+				7AF19B431CF73AC100AD1341 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HypeChatDemo;
+			productName = HypeChatDemo;
+			productReference = 7AF19B151CF663E500AD1341 /* HypeChatDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7AF19B0D1CF663E500AD1341 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Hype Labs";
+				TargetAttributes = {
+					7AF19B141CF663E500AD1341 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 7AF19B101CF663E500AD1341 /* Build configuration list for PBXProject "HypeChatDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7AF19B0C1CF663E500AD1341;
+			productRefGroup = 7AF19B161CF663E500AD1341 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7AF19B141CF663E500AD1341 /* HypeChatDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7AF19B131CF663E500AD1341 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AF19B281CF663E500AD1341 /* LaunchScreen.storyboard in Resources */,
+				7AF19B251CF663E500AD1341 /* Assets.xcassets in Resources */,
+				7AF19B231CF663E500AD1341 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7AF19B111CF663E500AD1341 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7AF19B201CF663E500AD1341 /* ContactViewController.m in Sources */,
+				7AF19B311CF667E300AD1341 /* ContactTableViewCell.m in Sources */,
+				7A1072FE1CF782C700166F76 /* ChatViewController.m in Sources */,
+				7A1073011CF78A8100166F76 /* MessageTableViewCell.m in Sources */,
+				7AF19B1D1CF663E500AD1341 /* AppDelegate.m in Sources */,
+				7AF19B491CF773B400AD1341 /* Store.m in Sources */,
+				7AF19B1A1CF663E500AD1341 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7AF19B211CF663E500AD1341 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7AF19B221CF663E500AD1341 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7AF19B261CF663E500AD1341 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7AF19B271CF663E500AD1341 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7AF19B2A1CF663E500AD1341 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7AF19B2B1CF663E500AD1341 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7AF19B2D1CF663E500AD1341 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = HypeChatDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hypelabs.HypeChatDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7AF19B2E1CF663E500AD1341 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = HypeChatDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hypelabs.HypeChatDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7AF19B101CF663E500AD1341 /* Build configuration list for PBXProject "HypeChatDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7AF19B2A1CF663E500AD1341 /* Debug */,
+				7AF19B2B1CF663E500AD1341 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7AF19B2C1CF663E500AD1341 /* Build configuration list for PBXNativeTarget "HypeChatDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7AF19B2D1CF663E500AD1341 /* Debug */,
+				7AF19B2E1CF663E500AD1341 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7AF19B0D1CF663E500AD1341 /* Project object */;
+}
