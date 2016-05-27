@@ -1,5 +1,7 @@
 # Hype
 
+![alt tag](http://hypelabs.io/static/img/logo200x.png)
+
 [Hype](http://hypelabs.io/?r=9) is an SDK for cross-platform peer-to-peer communication with mesh networking. Hype works even without Internet access, connecting devices via other communication channels such as Bluetooth, Wi-Fi direct, and Infrastructural Wi-Fi.
 
 The Hype SDK has been designed by [Hype Labs](http://hypelabs.io/?r=9). It is currently in private Beta for iOS (Android coming very soon).
@@ -238,4 +240,4 @@ This project is MIT-licensed.
 
 ## Follow us
 
-Follow us on [twitter](http://www.twitter.com/hypelabstech) and [facebook](http://www.facebook.com/hypelabs.io).
+Follow us on [twitter](http://www.twitter.com/hypelabstech) and [facebook](http://www.facebook.com/hypelabs.io). We promise to keep you up to date!
