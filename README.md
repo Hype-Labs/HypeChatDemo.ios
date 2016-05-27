@@ -22,7 +22,7 @@ Most of the action takes place in `ContactViewController`. There you'll learn ab
 
 #### 1. Download the Hype SDK
 
-The first thing you need is the Hype SDK binary. Subscribe for the Beta program at Hype Labs' [website](http://hypelabs.io/downloads/) and follow the instructions from your inbox. You'll need your subscription to be activated before proceeding.
+The first thing you need is the Hype SDK binary. Subscribe for the Beta program at the Hype Labs [website](http://hypelabs.io/downloads/) and follow the instructions from your inbox. You'll need your subscription to be activated before proceeding.
 
 #### 2. Add the SDK to your Xcode project
 
@@ -34,7 +34,13 @@ Go to [the apps page](http://hypelabs.io/apps) and create a new app by pressing 
 
 #### 4. Setup the realm
 
-The realm must be set in the project's Info.plist file. You'll find your Info.plist in Project Navigator under the Supporting Files group. If you are not sure how to edit your Info.plist, we recommend reading Apple's documentation [here](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/AboutInformationPropertyListFiles.html) for that regard. Add a new top level entry on your Info.plist called _com.hypelabs.hype_ and set its type to _Dictionary_. Expand the entry by clicking on the arrow on the left and replace the _New item_ text with _realm_ (all lower case). Set its type to _String_ and the value to the realm identifier that you got from set 3.
+The realm must be set in the project's Info.plist file or when starting the Hype services. You'll find your Info.plist in Project Navigator under the Supporting Files group. If you are not sure how to edit your Info.plist, we recommend reading Apple's documentation [here](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/AboutInformationPropertyListFiles.html) for that regard. Add a new top level entry on your Info.plist called _com.hypelabs.hype_ and set its type to _Dictionary_. Expand the entry by clicking on the arrow on the left and replace the _New item_ text with _realm_ (all lower case). Set its type to _String_ and the value to the realm identifier that you got from step 3. Alternatively, you can set the `HYPOptionRealmKey` when starting the framework's services with an `NSString` value indicating the realm. The following example illustrates how to do this. The 00000000 realm is reserved for testing purposes and apps should not be deployed with this realm. Also, setting the realm with `-startWithOptions:` takes precedence over the realm read from the Info.plist file.
+
+```objc
+    [[HYP instance] startWithOptions:@{
+                                       HYPOptionRealmKey:@"00000000"
+                                       }];
+```
 
 #### 5. Start Hype services
 
@@ -43,7 +49,6 @@ It's time to write some code! Have the view controller of your choice implement 
 ```objc
 
 @implementation ContactViewController
-
 
 - (void)viewDidLoad
 {
@@ -77,7 +82,6 @@ It's time to write some code! Have the view controller of your choice implement 
                                       }];
 }
 
-
 - (void)hypeDidStart:(HYP *)hype
 {
     // At this point, the device is actively participating on the network. Other devices
@@ -85,7 +89,6 @@ It's time to write some code! Have the view controller of your choice implement 
     // by others. When that happens, the two devices should be ready to communicate.
     NSLog(@"Hype started!");
 }
-
 
 - (void)hype:(HYP *)hype didFindInstance:(HYPInstance *)instance
 {
