@@ -103,7 +103,6 @@ It's time to write some code! Have the view controller of your choice implement 
     [self.tableView reloadData];
 }
 
-
 ```
 
 This code demonstrates how to add an instance as an Hype observer and starting the framework's services. Observers get notifications from the framework indicating when events happen, such as Hype's lifecycle and receiving messages from other devices. Also check the [HYPObserver](https://hypelabs.io/docs/ios/api-reference/#hypobserver) documentation for details on which events the framework will be notifying you of. Remember, you still need to implement the methods defined by the protocol. That is, your view controller should implement methods such as `-hype:didReceiveMessage:fromInstance:`, `-hype:didFindInstance:`, and so on, otherwise you'll get compiler warnings and no notifications at all. The last line in `-viewDidLoad` requests Hype to start it's services, by publishing the device on the network and browsing for other devices in proximity. At this point, the framework is still not actively participating on the network, though. Only when the observer method `-hypeDidStart:` is called is the device actively participating on the network. After that happens, instances can be found at any time if other devices are in proximity. When that happens, the framework triggers a `-hype:didFindInstance:` notification, indicating that another peer is ready to communicate. You should keep found instances in a dictionary, as you'll need those later to exchange content. Here's one way how that could be accomplished, while expanding on the previous example:
@@ -239,11 +238,4 @@ This project is MIT-licensed.
 
 ## Follow us
 
-[![alt text][1.1]][1]
-[![alt text][2.1]][1]
-
-    [1.1]: http://i.imgur.com/tXSoThF.png
-    [2.1]: http://i.imgur.com/P3YfQoD.png
-
-    [1]: http://www.twitter.com/hypelabstech
-    [2]: http://www.fb.com/hypelabs.io
+Follow us on [twitter](http://www.twitter.com/hypelabstech) and [facebook](http://www.facebook.com/hypelabs.io).
