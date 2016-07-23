@@ -40,34 +40,19 @@
     
     if (text.length > 0) {
         
-        NSError * error;
-        
         // When sending content there must be some sort of protocol that both parties
         // understand. In this case, we simply send the text encoded in UTF8. The data
         // must be decoded when received, using the same encoding.
         NSData * data = [text dataUsingEncoding:NSUTF8StringEncoding];
         
         HYPMessage * message = [[HYP instance] sendData:data
-                                             toInstance:self.store.instance
-                                                  error:&error];
+                                             toInstance:self.store.instance];
         
-        if (error) {
+        // Clear the input view
+        self.textView.text = @"";
             
-            // The message couldn't be sent for some reason. Common causes include the
-            // instance not being reachable anymore (usualy resulting in it being lost).
-            // This error should be properly handled, probably by notifying the user
-            // that the delivery was not possible.
-            return;
-        }
-        
-        else {
-            
-            // Clear the input view
-            self.textView.text = @"";
-            
-            // Adding the message to the store updates the table view
-            [self.store addMessage:message];
-        }
+        // Adding the message to the store updates the table view
+        [self.store addMessage:message];
     }
 }
 

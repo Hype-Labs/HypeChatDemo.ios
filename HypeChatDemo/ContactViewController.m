@@ -28,7 +28,7 @@
 
 #import <Hype/Hype.h>
 
-@interface ContactViewController () <HYPObserver, UITableViewDataSource>
+@interface ContactViewController () <HYPStateObserver, HYPNetworkObserver, HYPMessageObserver, UITableViewDataSource>
 
 // The stores object keeps track of message storage associated with each instance (peer)
 @property (strong, atomic, readonly) NSMutableDictionary * stores;
@@ -66,11 +66,24 @@
 
 - (void)requestHypeToStart
 {
-    // Adding self as an Hype observer makes sure that the contact view controller gets
-    // notifications for events being triggered by the Hype framework. These events
-    // include the framework's lifecycle (starting, stopping), network events (finding
-    // and losing instances), and message I/O.
-    [[HYP instance] addHypeObserver:self];
+    // Adding itself as an Hype state observer makes sure that the application gets
+    // notifications for lifecycle events being triggered by the Hype framework. These
+    // events include starting and stopping, as well as some error handling.
+    [[HYP instance] addStateObserver:self];
+    
+    // Network observer notifications include other devices entering and leaving the
+    // network. When a device is found all observers get a -hype:didFindInstance:
+    // notification, and when they leave -hype:didLoseInstance:error: is triggered instead.
+    [[HYP instance] addNetworkObserver:self];
+    
+    // Message notifications indicate when messages are sent (not available yet) or fail
+    // to be sent. Notice that a message being sent does not imply that it has been
+    // delivered, only that it has left the device. If considering mesh networking,
+    // in which devices will be forwarding content for each other, a message being
+    // means that its contents have been flushed out of the output stream, but not
+    // that they have reached their destination. This, in turn, is what acknowledgements
+    // are used for, but those have not yet available.
+    [[HYP instance] addMessageObserver:self];
     
     // Requesting Hype to start is equivalent to requesting the device to publish
     // itself on the network and start browsing for other devices in proximity. If
@@ -176,6 +189,16 @@
     // messages. Reloading is probably an overkill, but the point is to maintain focus on how
     // the framework works.
     [self.tableView reloadData];
+}
+
+- (void)hype:(HYP *)hype didFailSending:(HYPMessage *)message toInstance:(HYPInstance *)instance
+       error:(NSError *)error
+{
+    // Sending messages can fail for a lot of reasons, such as the adapters
+    // (Bluetooth and Wi-Fi) being turned off by the user while the process
+    // of sending the data is still ongoing. The error parameter describes
+    // the cause for the failure.
+    NSLog(@"Failed to send message: %lu [%@]", (unsigned long)message.identifier, error.localizedDescription);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

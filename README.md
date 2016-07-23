@@ -4,7 +4,7 @@
 
 [Hype](http://hypelabs.io/?r=9) is an SDK for cross-platform peer-to-peer communication with mesh networking. Hype works even without Internet access, connecting devices via other communication channels such as Bluetooth, Wi-Fi direct, and Infrastructural Wi-Fi.
 
-The Hype SDK has been designed by [Hype Labs](http://hypelabs.io/?r=9). It is currently in private Beta for iOS (Android coming very soon).
+The Hype SDK has been designed by [Hype Labs](http://hypelabs.io/?r=9). It is currently in private Beta for iOS  and [Android](https://github.com/Hype-Labs/HypeChatDemo.android).
 
 You can start using Hype today, [join the beta by subscribing on our website](http://hypelabs.io/?r=9).
 
@@ -46,7 +46,7 @@ The realm must be set in the project's Info.plist file or when starting the Hype
 
 #### 5. Start Hype services
 
-It's time to write some code! Have the view controller of your choice implement the [HYPObserver](http://hypelabs.io) protocol and registering itself as an observer. After that, it's time to start the Hype services. Like so:
+It's time to write some code! Have the view controller of your choice implement the observer protocols (HYPStateObserver, HYPNetworkObserver, and HYPMessageObserver) and registering itself as an observer. After that, it's time to start the Hype services. Like so:
 
 ```objc
 
@@ -65,11 +65,24 @@ It's time to write some code! Have the view controller of your choice implement 
 
 - (void)requestHypeToStart
 {
-    // Adding self as an Hype observer makes sure that the contact view controller gets
-    // notifications for events being triggered by the Hype framework. These events
-    // include the framework's lifecycle (starting, stopping), network events (finding
-    // and losing instances), and message I/O.
-    [[HYP instance] addHypeObserver:self];
+    // Adding itself as an Hype state observer makes sure that the application gets
+    // notifications for lifecycle events being triggered by the Hype framework. These
+    // events include starting and stopping, as well as some error handling.
+    [[HYP instance] addStateObserver:self];
+
+    // Network observer notifications include other devices entering and leaving the
+    // network. When a device is found all observers get a -hype:didFindInstance:
+    // notification, and when they leave -hype:didLoseInstance:error: is triggered instead.
+    [[HYP instance] addNetworkObserver:self];
+
+    // Messsage notifications indicate when messages are sent (not available yet) or fail
+    // to be sent. Notice that a message being sent does not imply that it has been
+    // delivered, only that it has left the device. If considering mesh networking,
+    // in which devices will be forwarding content for each other, a message being
+    // means that its contents have been flushed out of the output stream, but not
+    // that they have reached their destination. This, in turn, is what acknowledgements
+    // are used for, but those have not yet available.
+    [[HYP instance] addMessageObserver:self];
 
     // Requesting Hype to start is equivalent to requesting the device to publish
     // itself on the network and start browsing for other devices in proximity. If
@@ -80,8 +93,8 @@ It's time to write some code! Have the view controller of your choice implement 
     // under the Apps section and click "Create New App". The resulting app should
     // display a realm number. Copy and paste that here.
     [[HYP instance] startWithOptions:@{
-                                       HYPOptionRealmKey:@"00000000"
-                                      }];
+        HYPOptionRealmKey:@"00000000"
+    }];
 }
 
 - (void)hypeDidStart:(HYP *)hype
@@ -110,11 +123,11 @@ It's time to write some code! Have the view controller of your choice implement 
 
 ```
 
-This code demonstrates how to add an instance as an Hype observer and starting the framework's services. Observers get notifications from the framework indicating when events happen, such as Hype's lifecycle and receiving messages from other devices. Also check the [HYPObserver](https://hypelabs.io/docs/ios/api-reference/#hypobserver) documentation for details on which events the framework will be notifying you of. Remember, you still need to implement the methods defined by the protocol. That is, your view controller should implement methods such as `-hype:didReceiveMessage:fromInstance:`, `-hype:didFindInstance:`, and so on, otherwise you'll get compiler warnings and no notifications at all. The last line in `-viewDidLoad` requests Hype to start it's services, by publishing the device on the network and browsing for other devices in proximity. At this point, the framework is still not actively participating on the network, though. Only when the observer method `-hypeDidStart:` is called is the device actively participating on the network. After that happens, instances can be found at any time if other devices are in proximity. When that happens, the framework triggers a `-hype:didFindInstance:` notification, indicating that another peer is ready to communicate. You should keep found instances in a dictionary, as you'll need those later to exchange content. Here's one way how that could be accomplished, while expanding on the previous example:
+This code demonstrates how to add an instance as an Hype observer and starting the framework's services. Observers get notifications from the framework indicating when events happen, such as Hype's lifecycle and receiving messages from other devices. Remember, you still need to implement the methods defined by the protocol. That is, your view controller should implement methods such as `-hype:didReceiveMessage:fromInstance:`, `-hype:didFindInstance:`, and so on, otherwise you'll get compiler warnings and no notifications at all. The last line in `-viewDidLoad` requests Hype to start it's services, by publishing the device on the network and browsing for other devices in proximity. At this point, the framework is still not actively participating on the network, though. Only when the observer method `-hypeDidStart:` is called is the device actively participating on the network. After that happens, instances can be found at any time if other devices are in proximity. When that happens, the framework triggers a `-hype:didFindInstance:` notification, indicating that another peer is ready to communicate. You should keep found instances in a dictionary, as you'll need those later to exchange content. Here's one way how that could be accomplished, while expanding on the previous example:
 
 
 ```objc
-@interface ContactViewController () <HYPObserver, UITableViewDataSource>
+@interface ContactViewController () <HYPStateObserver, HYPNetworkObserver, HYPMessageObserver, UITableViewDataSource>
 
 // The stores object keeps track of message storage associated with each instance (peer)
 @property (strong, atomic, readonly) NSMutableDictionary * stores;
@@ -186,37 +199,24 @@ Sending messages is also very simple. All it takes is a previously found instanc
 
     if (text.length > 0) {
 
-        NSError * error;
-
         // When sending content there must be some sort of protocol that both parties
         // understand. In this case, we simply send the text encoded in UTF8. The data
         // must be decoded when received, using the same encoding.
         NSData * data = [text dataUsingEncoding:NSUTF8StringEncoding];
 
-        HYPMessage * message = [[HYP instance] sendData:data toInstance:self.store.instance error:&error];
+        HYPMessage * message = [[HYP instance] sendData:data
+                                             toInstance:self.store.instance];
 
-        if (error) {
+        // Clear the input view
+        self.textView.text = @"";
 
-            // The message couldn't be sent for some reason. Common causes include the
-            // instance not being reachable anymore (usualy resulting in it being lost).
-            // This error should be properly handled, probably by notifying the user
-            // that the delivery was not possible.
-            return;
-        }
-
-        else {
-
-            // Clear the input view
-            self.textView.text = @"";
-
-            // Adding the message to the store updates the table view
-            [self.store addMessage:message];
-        }
+        // Adding the message to the store updates the table view
+        [self.store addMessage:message];
     }
 }
 ```
 
-Finally, messages are received by all `HYPObserver` instances actively observing framework events, which, in this case, is the `ContactViewController`.
+Finally, messages are received by all `HYPMessageObserver` instances actively observing framework events, which, in this case, is the `ContactViewController`.
 
 ```objc
 - (void)hype:(HYP *)hype didReceiveMessage:(HYPMessage *)message fromInstance:(HYPInstance *)instance
@@ -232,6 +232,15 @@ Finally, messages are received by all `HYPObserver` instances actively observing
     // messages. Reloading is probably an overkill, but the point is to maintain focus on how
     // the framework works.
     [self.tableView reloadData];
+}
+
+- (void)hype:(HYP *)hype didFailSending:(HYPMessage *)message toInstance:(HYPInstance *)instance error:(NSError *)error
+{
+    // Sending messages can fail for a lot of reasons, such as the adapters
+    // (Bluetooth and Wi-Fi) being turned off by the user while the process
+    // of sending the data is still ongoing. The error parameter describes
+    // the cause for the failure.
+    NSLog(@"Failed to send message: %lu [%@]", (unsigned long)message.identifier, error.localizedDescription);
 }
 ```
 
