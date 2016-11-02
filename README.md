@@ -238,6 +238,25 @@ Finally, messages are received by all `HYPMessageObserver` instances actively ob
     // the cause for the failure.
     NSLog(@"Failed to send message: %lu [%@]", (unsigned long)message.identifier, error.localizedDescription);
 }
+
+- (void)hype:(HYP *)hype didSendMessage:(HYPMessageInfo *)messageInfo toInstance:(HYPInstance *)toInstance progress:(float)progress complete:(BOOL)complete
+{
+    // A message being "sent" indicates that it has been written to the output
+    // streams. However, the content could still be buffered for output, so it
+    // has not necessarily left the device. This is useful to indicate when a
+    // message is being processed, but it does not indicate delivery by the
+    // destination device.
+    NSLog(@"Message being sent: %f", progress);
+}
+
+- (void)hype:(HYP *)hype didDeliverMessage:(HYPMessageInfo *)messageInfo toInstance:(HYPInstance *)toInstance progress:(float)progress complete:(BOOL)complete
+{
+    // A message being delivered indicates that the destination device has
+    // acknowledge reception. If the "done" argument is true, then the message
+    // has been fully delivered and the content is available on the destination
+    // device. This method is useful for implementing progress bars.
+    NSLog(@"Message being delivered: %f", progress);
+}
 ```
 
 In this case messages are just being stored for later processing, which happens in the `ChatViewController` when the messages are being displayed. Notice that the encoding used is the same both when sending and when receiving. The protocol must be the same on both ends of the link.
