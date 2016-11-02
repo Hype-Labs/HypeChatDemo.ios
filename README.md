@@ -75,13 +75,9 @@ It's time to write some code! Have the view controller of your choice implement 
     // notification, and when they leave -hype:didLoseInstance:error: is triggered instead.
     [[HYP instance] addNetworkObserver:self];
 
-    // Messsage notifications indicate when messages are sent (not available yet) or fail
+    // Messsage notifications indicate when messages are sent, delivered, or fail
     // to be sent. Notice that a message being sent does not imply that it has been
-    // delivered, only that it has left the device. If considering mesh networking,
-    // in which devices will be forwarding content for each other, a message being
-    // means that its contents have been flushed out of the output stream, but not
-    // that they have reached their destination. This, in turn, is what acknowledgements
-    // are used for, but those have not yet available.
+    // delivered, only that they have been queued for output.
     [[HYP instance] addMessageObserver:self];
 
     // Requesting Hype to start is equivalent to requesting the device to publish
