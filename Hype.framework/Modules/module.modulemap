@@ -1,6 +1,0 @@
-framework module Hype {
-  umbrella header "Hype.h"
-
-  export *
-  module * { export * }
-}
