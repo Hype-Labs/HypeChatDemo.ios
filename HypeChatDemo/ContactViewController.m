@@ -191,14 +191,32 @@
     [self.tableView reloadData];
 }
 
-- (void)hype:(HYP *)hype didFailSending:(HYPMessage *)message toInstance:(HYPInstance *)instance
-       error:(NSError *)error
+- (void)hype:(HYP *)hype didFailSendingMessage:(HYPMessageInfo *)messageInfo toInstance:(HYPInstance *)toInstance error:(NSError *)error
 {
     // Sending messages can fail for a lot of reasons, such as the adapters
     // (Bluetooth and Wi-Fi) being turned off by the user while the process
     // of sending the data is still ongoing. The error parameter describes
     // the cause for the failure.
-    NSLog(@"Failed to send message: %lu [%@]", (unsigned long)message.identifier, error.localizedDescription);
+    NSLog(@"Failed to send message: %lu [%@]", (unsigned long)messageInfo.identifier, error.localizedDescription);
+}
+
+- (void)hype:(HYP *)hype didSendMessage:(HYPMessageInfo *)messageInfo toInstance:(HYPInstance *)toInstance progress:(float)progress complete:(BOOL)complete
+{
+    // A message being "sent" indicates that it has been written to the output
+    // streams. However, the content could still be buffered for output, so it
+    // has not necessarily left the device. This is useful to indicate when a
+    // message is being processed, but it does not indicate delivery by the
+    // destination device.
+    NSLog(@"Message being sent: %f", progress);
+}
+
+- (void)hype:(HYP *)hype didDeliverMessage:(HYPMessageInfo *)messageInfo toInstance:(HYPInstance *)toInstance progress:(float)progress complete:(BOOL)complete
+{
+    // A message being delivered indicates that the destination device has
+    // acknowledge reception. If the "done" argument is true, then the message
+    // has been fully delivered and the content is available on the destination
+    // device. This method is useful for implementing progress bars.
+    NSLog(@"Message being delivered: %f", progress);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
