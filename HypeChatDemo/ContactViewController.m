@@ -144,51 +144,60 @@
 
 - (void)hype:(HYP *)hype didFindInstance:(HYPInstance *)instance
 {
-    // Hype instances that are participating on the network are identified by a full
-    // UUID, composed by the vendor's realm followed by a unique identifier generated
-    // for each instance.
-    NSLog(@"Found instance: %@", instance.stringIdentifier);
-    
-    // Instances should be strongly kept by some data structure. Their identifiers
-    // are useful for keeping track of which instances are ready to communicate.
-    [self.stores setObject:[Store storeWithInstsance:instance]
-                    forKey:instance.stringIdentifier];
-    
-    // Reloading the table reflects the change
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        // Hype instances that are participating on the network are identified by a full
+        // UUID, composed by the vendor's realm followed by a unique identifier generated
+        // for each instance.
+        NSLog(@"Found instance: %@", instance.stringIdentifier);
+        
+        // Instances should be strongly kept by some data structure. Their identifiers
+        // are useful for keeping track of which instances are ready to communicate.
+        [self.stores setObject:[Store storeWithInstsance:instance]
+                        forKey:instance.stringIdentifier];
+        
+        // Reloading the table reflects the change
+        [self.tableView reloadData];
+    });
 }
 
 - (void)hype:(HYP *)hype didLoseInstance:(HYPInstance *)instance
        error:(NSError *)error
 {
-    // An instance being lost means that communicating with it is no longer possible.
-    // This usually happens by the link being broken. This can happen if the connection
-    // times out or the device goes out of range. Another possibility is the user turning
-    // the adapters off, in which case not only are all instances lost but the framework
-    // also stops with an error.
-    NSLog(@"Lost instance: %@ [%@]", instance.stringIdentifier, error.localizedDescription);
-    
-    // Cleaning up is always a good idea. It's not possible to communicate with instances
-    // that were previously lost.
-    [self.stores removeObjectForKey:instance.stringIdentifier];
-    
-    // Reloading the table reflects the change
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        // An instance being lost means that communicating with it is no longer possible.
+        // This usually happens by the link being broken. This can happen if the connection
+        // times out or the device goes out of range. Another possibility is the user turning
+        // the adapters off, in which case not only are all instances lost but the framework
+        // also stops with an error.
+        NSLog(@"Lost instance: %@ [%@]", instance.stringIdentifier, error.localizedDescription);
+        
+        // Cleaning up is always a good idea. It's not possible to communicate with instances
+        // that were previously lost.
+        [self.stores removeObjectForKey:instance.stringIdentifier];
+        
+        // Reloading the table reflects the change
+        [self.tableView reloadData];
+    });
 }
 
 - (void)hype:(HYP *)hype didReceiveMessage:(HYPMessage *)message fromInstance:(HYPInstance *)instance
 {
-    NSLog(@"Got a message from: %@", instance.stringIdentifier);
-    
-    Store * store = [self.stores objectForKey:instance.stringIdentifier];
-    
-    // Storing the message triggers a reload update in the chat view controller
-    [store addMessage:message];
-    
-    // The data is reloaded so the green circle indicator is shown for contacts that have new
-    // messages. Reloading is probably an overkill, but the point is to maintain focus on how
-    // the framework works.
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        NSLog(@"Got a message from: %@", instance.stringIdentifier);
+        
+        Store * store = [self.stores objectForKey:instance.stringIdentifier];
+        
+        // Storing the message triggers a reload update in the chat view controller
+        [store addMessage:message];
+        
+        // The data is reloaded so the green circle indicator is shown for contacts that have new
+        // messages. Reloading is probably an overkill, but the point is to maintain focus on how
+        // the framework works.
+        [self.tableView reloadData];
+    });
 }
 
 - (void)hype:(HYP *)hype didFailSendingMessage:(HYPMessageInfo *)messageInfo toInstance:(HYPInstance *)toInstance error:(NSError *)error
