@@ -1,13 +1,14 @@
 //
-// The MIT License (MIT)
-// Copyright (c) 2016 Hype Labs Ltd
+// MIT License
+//
+// Copyright (C) 2018 HypeLabs Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-// of the Software, and to permit persons to whom the Software is furnished to do
-// so, subject to the following conditions:
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
 // The above copyright notice and this permission notice shall be included in all
 // copies or substantial portions of the Software.
@@ -45,7 +46,7 @@
         // must be decoded when received, using the same encoding.
         NSData * data = [text dataUsingEncoding:NSUTF8StringEncoding];
         
-        HYPMessage * message = [[HYP instance] sendData:data
+        HYPMessage * message = [HYP sendData:data
                                              toInstance:self.store.instance];
         
         // Clear the input view
@@ -61,10 +62,12 @@
     // Reloads the data and scrolls the table to the bottom. The UX for this is not
     // very good if there are not enough messags to fill the table, but it's nice
     // otherwise.
-    [self.messageDisplay reloadData];
-    [self.messageDisplay scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.store.allMessages.count - 1 inSection:0]
-                               atScrollPosition:UITableViewScrollPositionBottom
-                                       animated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.messageDisplay reloadData];
+        [self.messageDisplay scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.store.allMessages.count - 1 inSection:0]
+                                   atScrollPosition:UITableViewScrollPositionBottom
+                                           animated:YES];
+    });
 }
 
 - (void)viewDidLoad
