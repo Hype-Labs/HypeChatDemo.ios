@@ -29,16 +29,18 @@
 
 #import <Hype/Hype.h>
 
-@interface ContactViewController () <HYPStateObserver, HYPNetworkObserver, HYPMessageObserver, UITableViewDataSource>
+@interface ContactViewController () <HYPStateObserver, HYPNetworkObserver, HYPMessageObserver, UITableViewDelegate, UITableViewDataSource>
 
 // The stores object keeps track of message storage associated with each instance (peer)
 @property (strong, atomic, readonly) NSMutableDictionary * stores;
-@property (strong, atomic) IBOutlet UITableView *tableView;
 
 @end
 
 @implementation ContactViewController
 
+@synthesize announcement;
+@synthesize hypeAnnouncementLabel;
+@synthesize hypeInstancesTextField;
 @synthesize tableView = _tableView;
 @synthesize stores = _stores;
 
@@ -58,6 +60,11 @@
 {
     [super viewDidLoad];
 
+    [self setAnnouncement: [[UIDevice currentDevice] name]];
+    
+    NSString *labelText = [NSString stringWithFormat:@"Device: %@", [self announcement]];
+    [self.hypeAnnouncementLabel setText:labelText];
+    
     // If Hype starts successfully, the table should start displaying peers soon
     [self requestHypeToStart];
 }
@@ -69,10 +76,16 @@
     [HYP addNetworkObserver:self];
     [HYP addMessageObserver:self];
 
+    NSData *announcementData = [self.announcement dataUsingEncoding:NSUTF8StringEncoding];
+    [HYP setAnnouncement: announcementData];
+    
     // Generate an app identifier in the HypeLabs dashboard (https://hypelabs.io/apps/),
     // by creating a new app. Copy the given identifier here.
     [HYP setAppIdentifier:@"{{app_identifier}}"];
     [HYP start];
+    
+    // Update the text label
+    [self updateHypeInstancesLabel];
 }
 
 - (void)hypeDidStart
@@ -88,6 +101,15 @@
 - (void)hypeDidFailStartingWithError:(HYPError *)error
 {
     NSLog(@"Hype failed starting [%@]", [error description]);
+    
+    NSString *errorMsg = [NSString stringWithFormat:@"Description: %@\nReason:%@\nSuggestion:%@", [error description], [error reason], [error suggestion]];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Hype failed starting" message:errorMsg preferredStyle:UIAlertControllerStyleAlert];
+  
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alertController addAction:defaultAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)hypeDidBecomeReady
@@ -150,7 +172,7 @@
     Store * store = [self.stores objectForKey:fromInstance.stringIdentifier];
     
     // Storing the message triggers a reload update in the chat view controller
-    [store addMessage:message];
+    [store addMessage:message isMessageReceived:YES];
     
     // The data is reloaded so the green circle indicator is shown for contacts that have new
     // messages. Reloading is probably an overkill, but the point is to maintain focus on how
@@ -198,6 +220,7 @@
     // Reloading the table reflects the change
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
+        [self updateHypeInstancesLabel];
     });
 }
 
@@ -210,6 +233,7 @@
     // Reloading the table reflects the change
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
+        [self updateHypeInstancesLabel];
     });
 }
 
@@ -237,7 +261,7 @@
 
     // Configure the cell to display information from the found instance
     aCell.displayName.text = store.instance.stringIdentifier;
-    aCell.details.text = @"Description not available";  // Could use announcements
+    aCell.details.text = [[NSString alloc] initWithData:store.instance.announcement encoding:NSUTF8StringEncoding];
     aCell.contentIndicator.hidden = !store.hasNewMessages;
 
     [aCell setNeedsLayout];
@@ -257,7 +281,7 @@
     // Pass the store along when the segue executes
     [vc setStore:((ContactTableViewCell *)sender).store];
 
-    vc.instanceIdentifier.text = vc.store.instance.stringIdentifier;
+    vc.instanceAnnouncement.text = [[NSString alloc] initWithData:vc.store.instance.announcement encoding:NSUTF8StringEncoding];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -265,6 +289,16 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
+}
+
+- (void)updateHypeInstancesLabel
+{
+    if (self.stores.count == 0){
+        [hypeInstancesTextField setText:@"No Hype Devices Found"];
+    }
+    else {
+        [hypeInstancesTextField setText:[NSString stringWithFormat:@"Hype Devices Found: %lu", (unsigned long) self.stores.count]];
+    }
 }
 
 @end

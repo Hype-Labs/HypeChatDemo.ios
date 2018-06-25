@@ -28,7 +28,7 @@
 @interface ChatViewController : UIViewController
 
 @property (atomic) Store * store;
-@property (weak, nonatomic) IBOutlet UILabel *instanceIdentifier;
+@property (weak, nonatomic) IBOutlet UILabel *instanceAnnouncement;
 @property (weak, nonatomic) IBOutlet UITableView *messageDisplay;
 @property (weak, nonatomic) IBOutlet UITextField *textView;
 
