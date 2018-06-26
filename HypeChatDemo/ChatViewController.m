@@ -53,7 +53,7 @@
         self.textView.text = @"";
             
         // Adding the message to the store updates the table view
-        [self.store addMessage:message];
+        [self.store addMessage:message isMessageReceived:NO];
     }
 }
 
@@ -74,6 +74,8 @@
 {
     [super viewDidLoad];
     
+    NSString *announcement = [[NSString alloc] initWithData:self.store.instance.announcement encoding:NSUTF8StringEncoding];
+    [self.instanceAnnouncement setText:announcement];
     [self.messageDisplay setDataSource:self];
 }
 

@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		25BB22D6200E12880008448B /* Hype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25BB22D5200E12880008448B /* Hype.framework */; };
-		25BB22D7200E12880008448B /* Hype.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 25BB22D5200E12880008448B /* Hype.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		251071CC1FAE08C300FD1D59 /* hypelabs_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 251071CB1FAE08C200FD1D59 /* hypelabs_logo.png */; };
 		7A1072FE1CF782C700166F76 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1072FD1CF782C700166F76 /* ChatViewController.m */; };
 		7A1073011CF78A8100166F76 /* MessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1073001CF78A8100166F76 /* MessageTableViewCell.m */; };
 		7AF19B1A1CF663E500AD1341 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF19B191CF663E500AD1341 /* main.m */; };
@@ -18,17 +17,19 @@
 		7AF19B251CF663E500AD1341 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AF19B241CF663E500AD1341 /* Assets.xcassets */; };
 		7AF19B281CF663E500AD1341 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AF19B261CF663E500AD1341 /* LaunchScreen.storyboard */; };
 		7AF19B311CF667E300AD1341 /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF19B301CF667E300AD1341 /* ContactTableViewCell.m */; };
+		7AF19B451CF73CE700AD1341 /* Hype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF19B441CF73CE700AD1341 /* Hype.framework */; };
+		7AF19B461CF73CE700AD1341 /* Hype.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF19B441CF73CE700AD1341 /* Hype.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7AF19B491CF773B400AD1341 /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF19B481CF773B400AD1341 /* Store.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		25BB22D8200E12890008448B /* Embed Frameworks */ = {
+		7AF19B431CF73AC100AD1341 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				25BB22D7200E12880008448B /* Hype.framework in Embed Frameworks */,
+				7AF19B461CF73CE700AD1341 /* Hype.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -36,7 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		25BB22D5200E12880008448B /* Hype.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hype.framework; sourceTree = "<group>"; };
+		251071CB1FAE08C200FD1D59 /* hypelabs_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hypelabs_logo.png; path = Assets.xcassets/hypelabs_logo.png; sourceTree = "<group>"; };
 		7A1072FC1CF782C700166F76 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		7A1072FD1CF782C700166F76 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		7A1072FF1CF78A8100166F76 /* MessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewCell.h; sourceTree = "<group>"; };
@@ -54,6 +55,7 @@
 		7AF19B291CF663E500AD1341 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AF19B2F1CF667E300AD1341 /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
 		7AF19B301CF667E300AD1341 /* ContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewCell.m; sourceTree = "<group>"; };
+		7AF19B441CF73CE700AD1341 /* Hype.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hype.framework; sourceTree = "<group>"; };
 		7AF19B471CF773B400AD1341 /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
 		7AF19B481CF773B400AD1341 /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25BB22D6200E12880008448B /* Hype.framework in Frameworks */,
+				7AF19B451CF73CE700AD1341 /* Hype.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +75,7 @@
 		7AF19B0C1CF663E500AD1341 = {
 			isa = PBXGroup;
 			children = (
-				25BB22D5200E12880008448B /* Hype.framework */,
+				7AF19B441CF73CE700AD1341 /* Hype.framework */,
 				7AF19B171CF663E500AD1341 /* HypeChatDemo */,
 				7AF19B161CF663E500AD1341 /* Products */,
 			);
@@ -90,6 +92,7 @@
 		7AF19B171CF663E500AD1341 /* HypeChatDemo */ = {
 			isa = PBXGroup;
 			children = (
+				251071CB1FAE08C200FD1D59 /* hypelabs_logo.png */,
 				7AF19B1B1CF663E500AD1341 /* AppDelegate.h */,
 				7AF19B1C1CF663E500AD1341 /* AppDelegate.m */,
 				7AF19B1E1CF663E500AD1341 /* ContactViewController.h */,
@@ -130,7 +133,7 @@
 				7AF19B111CF663E500AD1341 /* Sources */,
 				7AF19B121CF663E500AD1341 /* Frameworks */,
 				7AF19B131CF663E500AD1341 /* Resources */,
-				25BB22D8200E12890008448B /* Embed Frameworks */,
+				7AF19B431CF73AC100AD1341 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -147,7 +150,7 @@
 		7AF19B0D1CF663E500AD1341 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Hype Labs";
 				TargetAttributes = {
 					7AF19B141CF663E500AD1341 = {
@@ -179,6 +182,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				251071CC1FAE08C300FD1D59 /* hypelabs_logo.png in Resources */,
 				7AF19B281CF663E500AD1341 /* LaunchScreen.storyboard in Resources */,
 				7AF19B251CF663E500AD1341 /* Assets.xcassets in Resources */,
 				7AF19B231CF663E500AD1341 /* Main.storyboard in Resources */,
@@ -236,12 +240,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -252,6 +258,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -288,12 +295,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -304,6 +313,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -316,7 +326,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
