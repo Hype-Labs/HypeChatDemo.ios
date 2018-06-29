@@ -24,6 +24,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ContactViewController : UITableViewController
+@interface ContactViewController : UIViewController
+
+@property (strong, atomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITextField *hypeInstancesTextField;
+@property (weak, nonatomic) IBOutlet UILabel *hypeAnnouncementLabel;
+@property NSString *announcement;
 
 @end

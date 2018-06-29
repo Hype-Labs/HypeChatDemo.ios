@@ -65,9 +65,14 @@
     }
 }
 
-- (void)addMessage:(HYPMessage *)message
+- (void)addMessage:(HYPMessage *)message isMessageReceived:(BOOL)isMessageReceived
 {
     [self.messages addObject:message];
+    
+    
+    if (!isMessageReceived && self.lastReadIndex == self.messages.count-1) {
+        self.lastReadIndex = self.messages.count; // Avoid NewContent indicator to be activated when the message to be added to the store was sent by this instance
+    }
     
     if ([self.delegate respondsToSelector:@selector(store:didAddMessage:)]) {
         [self.delegate store:self

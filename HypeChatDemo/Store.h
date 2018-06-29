@@ -38,6 +38,6 @@
 - (instancetype)initWithInstance:(HYPInstance *)instance;
 + (instancetype)storeWithInstance:(HYPInstance *)instance;
 
-- (void)addMessage:(HYPMessage *)message;
+- (void)addMessage:(HYPMessage *)message isMessageReceived:(BOOL)isMessageReceived;
 
 @end
