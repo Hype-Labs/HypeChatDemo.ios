@@ -146,16 +146,22 @@
 {
     NSLog(@"Hype lost instance: %@ [%@]", instance.stringIdentifier, error.description);
 
-    // Clean up
-    [self removeFromResolvedInstancesDict:instance];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        // Clean up
+        [self removeFromResolvedInstancesDict:instance];
+        [self.tableView reloadData];
+    });
 }
 
 - (void)hypeDidResolveInstance:(HYPInstance *)instance
 {
     NSLog(@"Hype resolved instance: %@", instance.stringIdentifier);
 
-    // This device is now capable of communicating
-    [self addToResolvedInstancesDict:instance];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // This device is now capable of communicating
+        [self addToResolvedInstancesDict:instance];
+    });
 }
 
 - (void)hypeDidFailResolvingInstance:(HYPInstance *)instance
